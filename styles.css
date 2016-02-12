@@ -1,0 +1,9 @@
+.border {
+	border: solid;
+	border-color: #000000;
+}
+
+.margin {
+	margin: 1%;
+	padding: 3%;
+}
