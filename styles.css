@@ -7,3 +7,7 @@
 	margin: 1%;
 	padding: 3%;
 }
+
+.messageText {
+	display:inline-block;
+}
