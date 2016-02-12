@@ -9,5 +9,6 @@
 }
 
 .messageText {
-	display:inline-block;
+	display:block;
+  clear: left;
 }

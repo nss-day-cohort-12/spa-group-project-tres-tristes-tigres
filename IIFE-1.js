@@ -13,12 +13,11 @@ var Chatty = (function () {
     },
     displayMessages: function () {
       var outputString = "";
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < privateMessages.length; i++) {
        
-        outputString += "<div class= 'messageText'>";
-
-        outputString += `<p>${privateMessages[i]}</p>`;
-        outputString += `<button class="btn btn-default deleteButton col-md-6">Delete</button></div>`
+        outputString += "<div class='messageText'>";
+        outputString += `<p style="float:left">${privateMessages[i]}</p>`;
+        outputString += `<button class="deleteButton">Delete</button>`
         outputString += "</div>";
       }  // This closes the for loop
       console.log(outputString)
