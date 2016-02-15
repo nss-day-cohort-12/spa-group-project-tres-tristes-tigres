@@ -12,13 +12,11 @@ var Chatty = (function (newChatty) {
     privateMessages.push(newMessageObject);  // add newMessage to privateMessages array
     Chatty.displayMessages(privateMessages);  // call displayMessages and send it array
   };
-  newChatty.deleteMessage = function (event) {
 
+  newChatty.deleteMessageFromArray = function (event) {
+    // delete from the array the object that has idt=divIDToDelete
 
-  }  
-
-
-
+  }
 
   newChatty.clearAllMessages = function(event) {
     privateMessages = [];
