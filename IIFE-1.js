@@ -1,19 +1,18 @@
-var Chatty = (function () {
+var Chatty = (function (newChatty) {
 
-  return {
-
-    loadJson: function (callbackFunction) {
+    newChatty.loadJson = function (callbackFunction) {
       var loader = new XMLHttpRequest();
       loader.addEventListener("load", function () {
-        var privateMessages = JSON.parse(this.responseText).message;  
+        var privateMessages = JSON.parse(this.responseText).message;
         Chatty.displayMessages(privateMessages);
+        Chatty.passArrayToIIFE2(privateMessages);
         callbackFunction();
       });
-    loader.open("GET", "initial.json");
-    loader.send();
+      loader.open("GET", "initial.json");
+      loader.send();
     },
 
-    displayMessages: function (privateMessages) {
+    newChatty.displayMessages = function (privateMessages) {
       var outputString = "";
       for (var i = 0; i < privateMessages.length; i++) {
        
@@ -27,6 +26,6 @@ var Chatty = (function () {
 
     } //       display Messages function closes here
 
+    return newChatty;
 
-  }; // This ends the return
-})();   // This ends the iffe
+})(Chatty);   // This ends the IIFE
