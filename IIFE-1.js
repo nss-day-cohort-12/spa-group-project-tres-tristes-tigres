@@ -1,17 +1,19 @@
 var Chatty = (function () {
-  var privateMessages = [];
+
   return {
-    loadJson: function () {
+
+    loadJson: function (callbackFunction) {
       var loader = new XMLHttpRequest();
       loader.addEventListener("load", function () {
-        privateMessages = JSON.parse(this.responseText).message;  
-        console.log(privateMessages);
-        Chatty.displayMessages();
+        var privateMessages = JSON.parse(this.responseText).message;  
+        Chatty.displayMessages(privateMessages);
+        callbackFunction();
       });
     loader.open("GET", "initial.json");
     loader.send();
     },
-    displayMessages: function () {
+
+    displayMessages: function (privateMessages) {
       var outputString = "";
       for (var i = 0; i < privateMessages.length; i++) {
        
@@ -20,7 +22,7 @@ var Chatty = (function () {
         outputString += `<button class="deleteButton">Delete</button>`
         outputString += "</div>";
       }  // This closes the for loop
-      console.log(outputString)
+
       document.getElementById("outputField").innerHTML = outputString;
 
     } //       display Messages function closes here
@@ -29,4 +31,4 @@ var Chatty = (function () {
   }; // This ends the return
 })();   // This ends the iffe
 
-Chatty.loadJson();
+Chatty.loadJson(Chatty.createListeners);
