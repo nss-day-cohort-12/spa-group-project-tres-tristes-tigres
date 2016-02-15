@@ -1,12 +1,10 @@
-//augmentation of SolarSystem
-
 var Chatty = (function (newChatty) {
 
 
-  // create new k:v pair in oldChatty object
+  // create new k:v pair in Chatty object
   newChatty.createListeners = function() {
     document.getElementById("clearMessage").addEventListener("click", Chatty.clearAllMessages);
-    document.getElementById("texto").addEventListener("keypress", Chatty.detectedKeypress;
+    document.getElementById("texto").addEventListener("keypress", Chatty.detectedKeypress);
     document.getElementById("checkboxDarkTheme").addEventListener("click", Chatty.toggleDarkTheme);
   };
 
@@ -17,6 +15,7 @@ var Chatty = (function (newChatty) {
     // or:
     Chatty.appendNewMessage(event.target.value);
   };
+
   newChatty.toggleDarkTheme = function(event) {
 
   }; 
@@ -25,3 +24,6 @@ var Chatty = (function (newChatty) {
   return newChatty;  // return object
 
 })(Chatty);
+
+
+Chatty.loadJson(Chatty.createListeners);

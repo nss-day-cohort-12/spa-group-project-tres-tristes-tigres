@@ -30,5 +30,3 @@ var Chatty = (function () {
 
   }; // This ends the return
 })();   // This ends the iffe
-
-Chatty.loadJson(Chatty.createListeners);
