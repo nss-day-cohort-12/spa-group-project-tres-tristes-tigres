@@ -6,10 +6,19 @@ var Chatty = (function (newChatty) {
     privateMessages = arrayReceived;
   }
 
-  newChatty.appendNewMessage = function (newMessage) {
-    privateMessages.push(newMessage);  // add newMessage to privateMessages array
+  newChatty.appendNewMessage = function (newMessageText) {
+    var newDivID = Date.now();
+    var newMessageObject = {idt:newDivID, text:newMessageText};
+    privateMessages.push(newMessageObject);  // add newMessage to privateMessages array
     Chatty.displayMessages(privateMessages);  // call displayMessages and send it array
   };
+  newChatty.deleteMessage = function (event) {
+
+
+  }  
+
+
+
 
   newChatty.clearAllMessages = function(event) {
     privateMessages = [];

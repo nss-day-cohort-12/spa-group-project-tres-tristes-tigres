@@ -16,8 +16,8 @@ var Chatty = (function (newChatty) {
       var outputString = "";
       for (var i = 0; i < privateMessages.length; i++) {
        
-        outputString += "<div class='messageText'>";
-        outputString += `<p style="float:left">${privateMessages[i]}</p>`;
+        outputString += `<div class='messageText' id='${privateMessages[i].idt}'>`;
+        outputString += `<p style="float:left">${privateMessages[i].text}</p>`;
         outputString += `<button class="deleteButton">Delete</button>`
         outputString += "</div>";
       }  // This closes the for loop
