@@ -6,7 +6,14 @@ var Chatty = (function (newChatty) {
     document.getElementById("clearMessage").addEventListener("click", Chatty.clearAllMessages);
     document.getElementById("texto").addEventListener("keypress", Chatty.detectedKeypress);
     document.getElementById("checkboxDarkTheme").addEventListener("click", Chatty.toggleDarkTheme);
+    document.querySelector("body").addEventListener("click", Chatty.deleteMessage);
+    
   };
+
+  newChatty.deleteMessage = function(event) {
+    Chatty.deleteMessageFromDOM(event);
+    Chatty.deleteMessageFromArray(event);
+  }
 
   newChatty.detectedKeypress = function(event) {
     var messageText = event.target.value;
