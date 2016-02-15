@@ -11,9 +11,12 @@ var Chatty = (function (newChatty) {
   newChatty.detectedKeypress = function(event) {
     var messageText = event.target.value;
     // if keypress is return
-    Chatty.appendNewMessage(messageText);
-    // or:
-    Chatty.appendNewMessage(event.target.value);
+    if (event.keyCode === 13) {
+      Chatty.appendNewMessage(event.target.value);
+    }
+
+    // ASCII code 13 is enter!!
+    // event.keyCode returns ASCII code of whatever key generated the keypress event
   };
 
   newChatty.toggleDarkTheme = function(event) {
