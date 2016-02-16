@@ -1,14 +1,14 @@
 var Chatty = (function (newChatty) {
 
-  newChatty.deleteMessageFromDOM = function (event) {
-    if (event.target.className == "deleteButton") {
-      var divToDelete = document.getElementById(event.target.parentNode.id);
-      console.log("divIDToDelete",event.target.parentNode.id);
-      console.log("divToDelete",divToDelete);
-      divToDelete.parentNode.removeChild(divToDelete);
-    }
-  }
+  newChatty.deleteMessageFromDOM = function (divIDToDelete) {
+    // before removing DOM element, remove specified object from array
+    Chatty.deleteMessageFromArray(divIDToDelete);
+
+    var divToDelete = document.getElementById(divIDToDelete);  // get DOM ref with unique ID
+    // can't remove DOM ref directly; have to reference it by its parentNode
+    divToDelete.parentNode.removeChild(divToDelete);
+  };
 
   return newChatty;
 
-})(Chatty);   // This ends the IIFE
+})(Chatty || {});   // This ends the IIFE

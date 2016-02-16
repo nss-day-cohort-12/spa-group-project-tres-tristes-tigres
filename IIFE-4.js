@@ -1,28 +1,26 @@
 var Chatty = (function (newChatty) {
 
-
-  // create new k:v pair in Chatty object
   newChatty.createListeners = function() {
     document.getElementById("clearMessage").addEventListener("click", Chatty.clearAllMessages);
     document.getElementById("texto").addEventListener("keypress", Chatty.detectedKeypress);
-    document.getElementById("checkboxDarkTheme").addEventListener("click", Chatty.toggleDarkTheme);
+    // document.getElementById("checkboxDarkTheme").addEventListener("click", Chatty.toggleDarkTheme);
     document.querySelector("body").addEventListener("click", Chatty.deleteMessage);
   };
 
   newChatty.deleteMessage = function(event) {
-    Chatty.deleteMessageFromDOM(event);
-    Chatty.deleteMessageFromArray(event);
-  }
+    if (event.target.className == "deleteButton") {  // was click on a Delete button?
+      Chatty.deleteMessageFromDOM(event.target.parentNode.id);  // if so, send ID of div to delete
+    }
+  };
 
   newChatty.detectedKeypress = function(event) {
-    var messageText = event.target.value;
-    // if keypress is return
-    if (event.keyCode === 13) {
-      Chatty.appendNewMessage(event.target.value);
+    if (event.keyCode === 13) {  // if keypress is enter, event generates keyCode 13
+      // event.keyCode returns ASCII code of whatever key generated the keypress event
+      var messageText = event.target.value;
+      var newDivID = Date.now();  // newDivID will be unique 13-digit number
+      // send contents of text input field and newDivID
+      Chatty.appendNewMessage(messageText,newDivID);
     }
-
-    // ASCII code 13 is enter!!
-    // event.keyCode returns ASCII code of whatever key generated the keypress event
   };
 
   newChatty.toggleDarkTheme = function(event) {
@@ -32,7 +30,7 @@ var Chatty = (function (newChatty) {
 
   return newChatty;  // return object
 
-})(Chatty);
+})(Chatty || {});
 
 
-Chatty.loadJson(Chatty.createListeners);
+Chatty.loadJson(Chatty.createListeners);  // pass createListeners as callback function
