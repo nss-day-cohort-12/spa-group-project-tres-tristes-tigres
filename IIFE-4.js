@@ -7,7 +7,6 @@ var Chatty = (function (newChatty) {
     document.getElementById("texto").addEventListener("keypress", Chatty.detectedKeypress);
     document.getElementById("checkboxDarkTheme").addEventListener("click", Chatty.toggleDarkTheme);
     document.querySelector("body").addEventListener("click", Chatty.deleteMessage);
-    
   };
 
   newChatty.deleteMessage = function(event) {
