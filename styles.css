@@ -4,8 +4,8 @@
 }
 
 .margin {
-	margin: 1%;
-	padding: 3%;
+	margin: .5%;
+	padding: .3%;
 }
 
 .messageText {
@@ -13,3 +13,7 @@
   clear: left;
 }
 
+.deletePosition {
+	display: block;
+	clear: right;
+}

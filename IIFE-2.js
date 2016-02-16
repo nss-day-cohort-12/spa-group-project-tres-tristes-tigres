@@ -12,18 +12,29 @@ var Chatty = (function (newChatty) {
     privateMessages.push(newMessageObject);  // add newMessage to privateMessages array
     Chatty.displayMessages(privateMessages);  // call displayMessages and send it array
     document.getElementById("clearMessage").disabled = false;
+    document.getElementById("texto").value = "";
   };
 
   newChatty.deleteMessageFromArray = function (event) {
     // delete from the array the object that has idt=divIDToDelete
+     var divIdToDelete = event.target.parentNode.id;
 
-  }
-
+     for (var i = 0; i < privateMessages.length; i++) {
+       if (privateMessages[i].idt === divIdToDelete) {
+         privateMessages.splice(i, 1);  
+       }
+     }
+   }
+  
   newChatty.clearAllMessages = function(event) {
     privateMessages = [];
     Chatty.displayMessages(privateMessages);
     document.getElementById("clearMessage").disabled = true;
   };
+
+  newChatty.getPrivateMessages = function() {
+    return privateMessages;
+  }
 
   return newChatty;  // return object
 
