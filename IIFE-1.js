@@ -10,22 +10,21 @@ var Chatty = (function (newChatty) {
       });
       loader.open("GET", "initial.json");
       loader.send();
-    },
+    };
 
     newChatty.displayMessages = function (privateMessages) {
       var outputString = "";
+      // build HTML string for each message in array
       for (var i = 0; i < privateMessages.length; i++) {
-       
         outputString += `<div class='messageText' id='${privateMessages[i].idt}'>`;
         outputString += `<p style="float:left">${privateMessages[i].text}</p>`;
-        outputString += `<button class="deleteButton">Delete</button>`
+        outputString += "<button class='deleteButton'>Delete</button>";
         outputString += "</div>";
-      }  // This closes the for loop
-
+      }
+      // transfer HTML string to DOM
       document.getElementById("outputField").innerHTML = outputString;
-
-    } //       display Messages function closes here
+    };
 
     return newChatty;
 
-})(Chatty);   // This ends the IIFE
+})(Chatty|| {});
