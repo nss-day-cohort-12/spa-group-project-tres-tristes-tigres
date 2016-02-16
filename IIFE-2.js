@@ -11,6 +11,7 @@ var Chatty = (function (newChatty) {
     var newMessageObject = {idt:newDivID, text:newMessageText};
     privateMessages.push(newMessageObject);  // add newMessage to privateMessages array
     Chatty.displayMessages(privateMessages);  // call displayMessages and send it array
+    document.getElementById("clearMessage").disabled = false;
   };
 
   newChatty.deleteMessageFromArray = function (event) {
@@ -21,6 +22,7 @@ var Chatty = (function (newChatty) {
   newChatty.clearAllMessages = function(event) {
     privateMessages = [];
     Chatty.displayMessages(privateMessages);
+    document.getElementById("clearMessage").disabled = true;
   };
 
   return newChatty;  // return object
