@@ -1,16 +1,10 @@
 var Chatty = (function (newChatty) {
 
   newChatty.createListeners = function() {
-    document.getElementById("clearMessage").addEventListener("click", Chatty.clearAllMessages);
-    document.getElementById("texto").addEventListener("keypress", Chatty.detectedKeypress);
-    // document.getElementById("checkboxDarkTheme").addEventListener("click", Chatty.toggleDarkTheme);
-    document.querySelector("body").addEventListener("click", Chatty.deleteMessage);
-  };
-
-  newChatty.deleteMessage = function(event) {
-    if (event.target.className == "deleteButton") {  // was click on a Delete button?
-      Chatty.deleteMessageFromDOM(event.target.parentNode.id);  // if so, send ID of div to delete
-    }
+    // jQuery listeners send event as argument, just like JS addEventListener
+    $("#clearMessage").click(Chatty.clearAllMessages);
+    $("#texto").keypress(Chatty.detectedKeypress);
+    $(document).on("click",".deleteButton",Chatty.deleteMessageFromDOM);
   };
 
   newChatty.detectedKeypress = function(event) {
@@ -22,11 +16,6 @@ var Chatty = (function (newChatty) {
       Chatty.appendNewMessage(messageText,newDivID);
     }
   };
-
-  newChatty.toggleDarkTheme = function(event) {
-
-  }; 
-
 
   return newChatty;  // return object
 
