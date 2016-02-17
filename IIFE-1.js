@@ -1,28 +1,25 @@
 var Chatty = (function (newChatty) {
 
     newChatty.loadJson = function (callbackFunction) {
-      var loader = new XMLHttpRequest();
-      loader.addEventListener("load", function () {
-        var privateMessages = JSON.parse(this.responseText).message;
-        Chatty.displayMessages(privateMessages);
-        Chatty.passArrayToIIFE2(privateMessages);
-        callbackFunction();
+      $.ajax({
+        url: "initial.json",
+        callback: callbackFunction  // this key is available to "done" function
+      }).done(function(JSONObject) {  // $.ajax automatically detects JSON string and parses it into object
+        Chatty.displayMessages(JSONObject.message);  // send array
+        Chatty.passArrayToIIFE2(JSONObject.message);  // send array
+        this.callback();
       });
-      loader.open("GET", "initial.json");
-      loader.send();
     };
 
     newChatty.displayMessages = function (privateMessages) {
-      var outputString = "";
-      // build HTML string for each message in array
+      $("#outputField").html("");  // clear div#outputField
+      // for each message in array, append new HTML to div#outputField
       for (var i = 0; i < privateMessages.length; i++) {
-        outputString += `<div class='messageText' id='${privateMessages[i].idt}'>`;
-        outputString += `<p style="float:left">${privateMessages[i].text}</p>`;
-        outputString += "<button class='deleteButton'>Delete</button>";
-        outputString += "</div>";
+        $("#outputField").append(`<div class='messageText' id='${privateMessages[i].idt}'>` +
+                                   `<p style="float:left">${privateMessages[i].text}</p>` +
+                                   "<button class='deleteButton'>Delete</button>" +
+                                 "</div>");  // note: must append a complete div, not partial!
       }
-      // transfer HTML string to DOM
-      document.getElementById("outputField").innerHTML = outputString;
     };
 
     return newChatty;

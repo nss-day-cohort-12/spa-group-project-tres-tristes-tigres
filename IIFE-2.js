@@ -10,8 +10,8 @@ var Chatty = (function (newChatty) {
     var newMessageObject = {idt:newDivID, text:newMessageText};
     privateMessages.push(newMessageObject);  // add newMessage to privateMessages array
     Chatty.displayMessages(privateMessages);  // call displayMessages and send it array
-    document.getElementById("clearMessage").disabled = false;
-    document.getElementById("texto").value = "";
+    $("#clearMessage").prop("disabled",false);
+    $("#texto").val("");
   };
 
   newChatty.deleteMessageFromArray = function (divIDToDelete) {
@@ -23,14 +23,14 @@ var Chatty = (function (newChatty) {
     }
     // if the array is now empty, disable the Clear Messages button
     if (privateMessages.length === 0) {
-      document.getElementById("clearMessage").disabled = true;
+      $("#clearMessage").prop("disabled",true);
     }
   };
 
   newChatty.clearAllMessages = function() {
     privateMessages = [];
     Chatty.displayMessages(privateMessages);
-    document.getElementById("clearMessage").disabled = true;
+    $("#clearMessage").prop("disabled",true);
   };
 
   newChatty.getPrivateMessages = function() {  // getter function
